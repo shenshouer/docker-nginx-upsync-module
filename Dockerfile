@@ -5,8 +5,7 @@ MAINTAINER Sope Shen <shenshouer51@gmail.com>
 ENV NGINX_VERSION nginx-1.8.0
 
 RUN set -ex \
-    && apk add --no-cache --virtual .build-deps \
-    		gcc \
+    && apk add --update gcc \
     		git \ 
     		openssl-dev \
     		pcre-dev \
@@ -29,7 +28,7 @@ RUN set -ex \
         --sbin-path=/usr/local/sbin/nginx \
     && make \
     && make install \
-    && apk del build-base wget git .build-deps \
+    && apk del build-base wget git \
     && rm -rf /tmp/src \
     && rm -rf /var/cache/apk/*
 
